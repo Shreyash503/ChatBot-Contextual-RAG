@@ -1,0 +1,6 @@
+rag_chatbot/
+│── app.py                 # Streamlit frontend
+│── rag_pipeline.py        # RAG backend (retriever + generator)
+│── data/                  # Folder to store documents
+│    └── sample.pdf        # Example document
+│── requirements.txt       # Dependencies
