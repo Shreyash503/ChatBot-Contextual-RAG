@@ -3,7 +3,8 @@ langchain
 langchain-groq
 chromadb
 tiktoken
-pypdf
+pypdf2
 python-docx
 python-dotenv
 sentence-transformers
+
