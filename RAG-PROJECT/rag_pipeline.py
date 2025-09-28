@@ -1,7 +1,7 @@
 import os
 from dotenv import load_dotenv
 from langchain_groq import ChatGroq
-from langchain_community.document_loaders import PyPDFLoader, TextLoader, Docx2txtLoader
+import  PyPDF2
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_community.vectorstores import Chroma
@@ -14,11 +14,8 @@ groq_key = os.getenv("GROQ_API_KEY")
 def load_documents(file_path):
     ext = file_path.split(".")[-1].lower()
     if ext == "pdf":
-        loader = PyPDFLoader(file_path)
-    elif ext == "txt":
-        loader = TextLoader(file_path, encoding="utf-8")
-    elif ext == "docx":
-        loader = Docx2txtLoader(file_path)
+        loader = PyPDF2(file_path)
+   
     else:
         raise ValueError(f"Unsupported file type: {ext}")
     return loader.load()
@@ -49,3 +46,4 @@ def build_qa_chain(vectorstore):
 
     qa_chain = RetrievalQA.from_chain_type(llm=llm, retriever=retriever)
     return qa_chain
+
